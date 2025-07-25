@@ -44,8 +44,8 @@ body {
 /*header section*/
 .hero_area {
   height: calc(100vh - 30px);
-  background: -webkit-gradient(linear, left top, right top, color-stop(55%, #1a2e35), color-stop(55%, #1cbbb4));
-  background: linear-gradient(to right, #1a2e35 55%, #1cbbb4 55%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(55%, #1a2e35), color-stop(55%, #747609));
+  background: linear-gradient(to right, #1a2e35 55%, #747609 55%);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -59,7 +59,7 @@ body {
 .sub_page .hero_area {
   height: auto;
   background: none;
-  background-color: #1a2e35;
+  background-color: #32351a;
 }
 
 .hero_area.sub_pages {
@@ -199,7 +199,7 @@ a:focus {
 }
 
 .login_btn-container a {
-  color: #1cbbb4;
+  color: #747609;
   text-transform: uppercase;
 }
 
@@ -325,7 +325,7 @@ a:focus {
   background-repeat: no-repeat;
   background-size: 14px;
   background-position: center;
-  background-color: #1cbbb4;
+  background-color: #747609;
   margin: 2px;
 }
 
@@ -430,7 +430,7 @@ a:focus {
 }
 
 .category_section {
-  background-color: #1cbbb4;
+  background-color: #747609;
   color: #ffffff;
   text-align: center;
 }
@@ -577,7 +577,7 @@ a:focus {
 }
 
 .freelance_section .tab_container .t-link-box[aria-expanded="true"] .img-box, .freelance_section .tab_container .t-link-box:hover .img-box {
-  background-color: #1cbbb4;
+  background-color: #747609;
 }
 
 .freelance_section .img-box img {

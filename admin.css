@@ -1,0 +1,101 @@
+/* admin.css */
+
+/* Umum */
+body {
+  background-color: #f8f9fa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Navbar */
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.navbar .nav-link {
+  font-size: 1rem;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+}
+
+/* Kartu */
+.card {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Header Kartu */
+.card-header {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+/* Tombol */
+.btn {
+  font-weight: 500;
+}
+
+/* Tabel */
+.table th, .table td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.table thead th {
+  background-color: #343a40;
+  color: white;
+}
+
+/* Input */
+#hargaInput {
+  max-width: 300px;
+}
+
+/* Grafik */
+#grafikTransaksi {
+  width: 100% !important;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+  #hargaInput {
+    width: 100%;
+  }
+
+  .input-group {
+    flex-direction: column;
+  }
+
+  .input-group button {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+    footer {
+      margin-top: 50px;
+      text-align: center;
+      color: #6c757d;
+      font-size: 0.9rem;
+    }
+
+     .harga-box {
+      margin: 50px auto;
+      padding: 30px;
+      text-align: center;
+      max-width: 400px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      background: #fefefe;
+    }
+    .harga-box h1 {
+      font-size: 2rem;
+      color: #d4af37;
+    }
+    .harga-box p {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
