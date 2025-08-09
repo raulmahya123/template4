@@ -202,8 +202,9 @@ function renderTable(data, targetId, isGold) {
   <button class="reject-btn" onclick="reject(${trx.id}, ${isGold})">✖</button>
 </td>
 <td>
-  ${trx.proof ? `<a href="/${trx.proof}" target="_blank">Lihat Bukti</a>` : 'Tidak ada bukti'}
+  ${trx.proof ? `<a href="http://localhost:5000/${trx.proof}" target="_blank">Lihat Bukti</a>` : 'Tidak ada bukti'}
 </td>
+
 <td>${trx.transaction_type}</td>
 <td>${trx.delivery_method}</td>
 <td>${trx.address}</td>
