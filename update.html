@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Ganti Password</title>
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      background:#0b0f14;
+      color:#e5e7eb;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      height:100vh;
+      margin:0;
+    }
+    .card{
+      background:#111827;
+      padding:20px;
+      border-radius:10px;
+      width:100%;
+      max-width:380px;
+      box-shadow:0 4px 20px rgba(0,0,0,0.4);
+    }
+    h2{
+      margin-top:0;
+      text-align:center;
+    }
+    label{
+      display:block;
+      margin-top:12px;
+      margin-bottom:6px;
+      font-size:14px;
+    }
+    input{
+      width:100%;
+      padding:10px;
+      border-radius:8px;
+      border:1px solid #1f2937;
+      background:#0d1320;
+      color:#fff;
+    }
+    input:focus{
+      outline:none;
+      border-color:#22d3ee;
+      box-shadow:0 0 0 2px rgba(34,211,238,0.3);
+    }
+    button{
+      margin-top:16px;
+      width:100%;
+      padding:12px;
+      background:linear-gradient(135deg, #10b981, #059669);
+      border:none;
+      border-radius:8px;
+      color:#06281f;
+      font-weight:bold;
+      cursor:pointer;
+    }
+    .msg{
+      margin-top:12px;
+      font-size:14px;
+      padding:8px;
+      border-radius:6px;
+    }
+    .error{ background:rgba(239,68,68,0.1); color:#fca5a5; }
+    .success{ background:rgba(16,185,129,0.1); color:#86efac; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Ganti Password</h2>
+    <form id="updateForm">
+      <label>Email (Gmail)</label>
+      <input type="email" id="email" placeholder="nama@gmail.com" required />
+
+      <label>Password Lama</label>
+      <input type="password" id="oldPw" placeholder="Password lama" required minlength="8" />
+
+      <label>Password Baru</label>
+      <input type="password" id="newPw" placeholder="Password baru" required minlength="8" />
+
+      <button type="submit" id="submitBtn">Update Password</button>
+      <div id="msg" class="msg" style="display:none"></div>
+    </form>
+  </div>
+
+  <script>
+    const API_BASE = 'http://localhost:5000'; // ganti kalau beda
+    const UPDATE_URL = API_BASE + '/api/auth/password/by-email';
+
+    const form = document.getElementById('updateForm');
+    const msgBox = document.getElementById('msg');
+    const submitBtn = document.getElementById('submitBtn');
+
+    function showMsg(text, type='error'){
+      msgBox.textContent = text;
+      msgBox.className = 'msg ' + (type === 'success' ? 'success' : 'error');
+      msgBox.style.display = 'block';
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      msgBox.style.display = 'none';
+
+      const email = document.getElementById('email').value.trim();
+      const currentPassword = document.getElementById('oldPw').value;
+      const newPassword = document.getElementById('newPw').value;
+
+      if (newPassword.length < 8) {
+        return showMsg('Password baru minimal 8 karakter');
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Memproses...';
+
+      try {
+        const res = await fetch(UPDATE_URL, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, currentPassword, newPassword })
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Update Password';
+          return showMsg(data.message || 'Gagal update password');
+        }
+
+        // Tampilkan pesan sukses
+        showMsg(data.message || 'Password berhasil diupdate', 'success');
+        submitBtn.textContent = 'Berhasil! Mengalihkan...';
+
+        // Redirect ke index.html setelah 2 detik
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 2000);
+
+      } catch (err) {
+        console.error(err);
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Update Password';
+        showMsg('Terjadi kesalahan koneksi');
+      }
+    });
+  </script>
+</body>
+</html>
